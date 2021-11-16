@@ -12,8 +12,12 @@ interface IUserRequest {
 
 export class CreateUserService {
 
-  async execute({ name, email, admin, password }: IUserRequest) {
+  async execute({ name, email, admin = false, password }: IUserRequest) {
     const userRepository = getCustomRepository(UsersRepositories);
+
+    if (!name) {
+      throw new Error("Incorrect name");
+    }
 
     if (!email) {
       throw new Error("Incorrect e-mail!");
@@ -24,8 +28,10 @@ export class CreateUserService {
 
     if (userAlreadyExists) {
       throw new Error("User already exists!");
-    } else {
-      console.log('Usuário cadastrado')
+    }
+
+    if (!password) {
+      throw new Error("Incorrect password!")
     }
 
     const passwordHash = await hash(password, 8);

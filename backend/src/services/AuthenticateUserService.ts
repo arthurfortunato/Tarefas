@@ -17,8 +17,6 @@ export class AuthenticateUserService {
 
     if (!user) {
       throw new Error("Email/Password incorrect")
-    } else {
-      console.log('Usuário Conectado')
     }
 
     const passwordMatch = await compare(password, user.password);

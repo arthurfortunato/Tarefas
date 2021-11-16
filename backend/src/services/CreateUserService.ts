@@ -24,6 +24,8 @@ export class CreateUserService {
 
     if (userAlreadyExists) {
       throw new Error("User already exists!");
+    } else {
+      console.log('Usuário cadastrado')
     }
 
     const passwordHash = await hash(password, 8);

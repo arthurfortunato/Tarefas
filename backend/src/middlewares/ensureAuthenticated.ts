@@ -23,7 +23,7 @@ export function ensureAuthenticated(
 
   try {
     //Validar se token é válido
-    const { sub } = verify(token, "6e7ad9b8cbd15010cb39e80d80d7e753") as IPayload;
+    const { sub } = verify(token, "1df01c2f0dbd2bde92cb8b93e74244c3") as IPayload;
 
     //Recuperar informações do usuário
     request.user_id = sub;

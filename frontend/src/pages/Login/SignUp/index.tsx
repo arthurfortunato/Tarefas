@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { api } from '../../../services/api';
 import styles from './styles.module.scss';
 
@@ -8,6 +8,17 @@ export function SignUp() {
   const [nameSignUp, setNameSignUp] = useState('');
   const [emailSignUp, setEmailSignUp] = useState('');
   const [passwordSignUp, setPasswordSignUp] = useState('');
+
+  useEffect(() => {
+    const url = window.location.href;
+    const hasUrl = url.includes('?');
+
+    if (hasUrl) {
+      const [urlWithoutCode] = url.split('?')
+
+      window.history.pushState({}, '', urlWithoutCode);
+    }
+  }, [])
 
   const signUp = () => {
     api.post('users', { name: nameSignUp, email: emailSignUp, password: passwordSignUp })

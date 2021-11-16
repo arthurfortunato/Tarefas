@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import logo from '../../../assets/logo.svg';
 import { api } from '../../../services/api';
 import styles from './styles.module.scss';
@@ -14,6 +14,17 @@ export function SignIn() {
   const signIn = () => {
     api.post('login', { email: emailSignIn, password: passwordSignIn })
   }
+
+  useEffect(() => {
+    const url = window.location.href;
+    const hasUrl = url.includes('?');
+
+    if (hasUrl) {
+      const [urlWithoutCode] = url.split('?')
+
+      window.history.pushState({}, '', urlWithoutCode);
+    }
+  }, [])
 
   return (
     <div className={styles.content}>

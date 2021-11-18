@@ -12,6 +12,7 @@ const authenticateUserController = new AuthenticateUserController();
 const listUserController = new ListUserController();
 
 router.post('/users', createUserController.handle);
+
 router.post('/login', authenticateUserController.handle);
 
-router.get('/users', ensureAuthenticated, listUserController.handle)
+router.get('/users', listUserController.handle)

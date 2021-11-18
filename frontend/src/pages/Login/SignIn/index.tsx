@@ -1,21 +1,17 @@
 import { useEffect, useState } from 'react';
-import logo from '../../../assets/logo.svg';
-import { api } from '../../../services/api';
 import styles from './styles.module.scss';
 
 import { MdEmail } from 'react-icons/md';
 import { FaLock } from 'react-icons/fa';
 
-export function SignIn() {
+import { useAuth } from '../../../contexts/auth';
+export const SignIn: React.FC = () => {
+
 
   const [emailSignIn, setEmailSignIn] = useState('');
-  const [passwordSignIn, setPasswordLogin] = useState('');
+  const [passwordSignIn, setPasswordSignIn] = useState('');
 
-  const signIn = () => {
-    api.post('login', { email: emailSignIn, password: passwordSignIn })
-  }
-
-  useEffect(() => {
+  /* useEffect(() => {
     const url = window.location.href;
     const hasUrl = url.includes('?');
 
@@ -24,7 +20,19 @@ export function SignIn() {
 
       window.history.pushState({}, '', urlWithoutCode);
     }
-  }, [])
+  }, []) */
+
+  const { Login } = useAuth()
+
+  async function handleLogin() {
+    await Login(
+
+      emailSignIn,
+      passwordSignIn
+
+    )
+  }
+  console.log(emailSignIn, passwordSignIn)
 
   return (
     <div className={styles.content}>
@@ -32,7 +40,7 @@ export function SignIn() {
         <h1>Faça seu login na plataforma</h1>
       </div>
       <div className={styles.boxContent}>
-        <form>
+        <form onSubmit={handleLogin}>
           <div>
             <MdEmail size="20px" color="rgb(32, 32, 36)" />
             <input
@@ -51,11 +59,11 @@ export function SignIn() {
               name="password"
               placeholder="Senha"
               value={passwordSignIn}
-              onChange={(event) => { setPasswordLogin(event.target.value) }}
+              onChange={(event) => { setPasswordSignIn(event.target.value) }}
             />
           </div>
 
-          <button type="submit" onClick={signIn}>ENTRAR</button>
+          <button type="submit">ENTRAR</button>
         </form>
 
         <div className={styles.separator}>

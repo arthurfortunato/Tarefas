@@ -1,18 +1,19 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Rotas } from './routes';
+import { SignUp } from './pages/Login/SignUp';
 
-import { SignIn } from './pages/Login/SignIn'
-import { SignUp } from './pages/Login/SignUp'
-import { Home } from './pages/Home';
+import { AuthProvider } from './contexts/auth';
 
 export function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/dashboard" element={<Home />} />
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path="*" element={<Rotas />} />
+          <Route path="/signup" element={<SignUp />} />
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
-  );
+  )
 }
 

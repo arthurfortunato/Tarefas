@@ -16,7 +16,9 @@ export function ensureAuthenticated(
 
   //Validar se token está preenchido
   if (!authToken) {
-    return response.status(401).end();
+    return response.status(401).json({
+      errorCode: "token.invalid",
+    });
   }
 
   const [, token] = authToken.split(" ")
@@ -31,7 +33,7 @@ export function ensureAuthenticated(
     return next();
 
   } catch (error) {
-    return response.status(401).end;
+    return response.status(401).json({ errorCode: "token.expired" });
   }
 
 }

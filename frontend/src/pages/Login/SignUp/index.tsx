@@ -68,7 +68,7 @@ export function SignUp() {
 
       <div className={styles.text}>
         <h1>Realize o seu cadastro!</h1>
-        <a href="/signin">
+        <a href="/">
           <HiArrowLeft />
           <p>Voltar para login</p>
         </a>

@@ -1,33 +1,44 @@
-import { useEffect, useState } from 'react';
-import { api } from '../../../services/api';
+import { FormEvent, useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
-import { HiArrowLeft } from 'react-icons/hi'
+import { HiArrowLeft } from 'react-icons/hi';
+
+import { useAuth } from '../../../contexts/auth';
 
 export function SignUp() {
   const [nameSignUp, setNameSignUp] = useState('');
   const [emailSignUp, setEmailSignUp] = useState('');
   const [passwordSignUp, setPasswordSignUp] = useState('');
 
-  useEffect(() => {
-    const url = window.location.href;
-    const hasUrl = url.includes('?');
+  const { SignUp } = useAuth();
 
-    if (hasUrl) {
-      const [urlWithoutCode] = url.split('?')
+  async function signUp() {
+    await SignUp(
+      nameSignUp,
+      emailSignUp,
+      passwordSignUp
+    )
 
-      window.history.pushState({}, '', urlWithoutCode);
+  }
+
+  async function handleCreateLogin() {
+
+    if (nameSignUp.trim() === '') {
+      alert('Nome inválido')
+      return;
+    } else if (emailSignUp.trim() === '') {
+      alert('E-mail inválido')
+      return;
+    } else if (passwordSignUp.length <= 0) {
+      alert('Senha Inválida')
+      return;
     }
-  }, [])
-
-  const signUp = () => {
-    api.post('users', { name: nameSignUp, email: emailSignUp, password: passwordSignUp })
   }
 
   return (
     <div className={styles.content}>
       <div className={styles.boxContent}>
-        <form>
+        <form onSubmit={handleCreateLogin}>
           <div>
             <input
               type="text"

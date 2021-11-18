@@ -7,20 +7,8 @@ import { FaLock } from 'react-icons/fa';
 import { useAuth } from '../../../contexts/auth';
 export const SignIn: React.FC = () => {
 
-
   const [emailSignIn, setEmailSignIn] = useState('');
   const [passwordSignIn, setPasswordSignIn] = useState('');
-
-  /* useEffect(() => {
-    const url = window.location.href;
-    const hasUrl = url.includes('?');
-
-    if (hasUrl) {
-      const [urlWithoutCode] = url.split('?')
-
-      window.history.pushState({}, '', urlWithoutCode);
-    }
-  }, []) */
 
   const { Login } = useAuth()
 

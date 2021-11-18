@@ -14,6 +14,7 @@ type AuthContextData = {
   user: User | null;
   Login(email: string, password: string): Promise<void>;
   Logout(): void;
+  SignUp(name: string, email: string, password: string): Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -32,6 +33,14 @@ export const AuthProvider: React.FC = ({ children }) => {
     localStorage.setItem('@App:user', JSON.stringify(response.data.user));
     localStorage.setItem('@App:token', response.data.token);
 
+  }
+
+  async function SignUp(name: string, email: string, password: string) {
+    await api.post('/users', {
+      name: name,
+      email: email,
+      password: password
+    })
   }
 
   useEffect(() => {
@@ -67,7 +76,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ signed: Boolean(user), user, Login, Logout }}>
+    <AuthContext.Provider value={{ signed: Boolean(user), user, Login, Logout, SignUp }}>
       {children}
     </AuthContext.Provider>
   );

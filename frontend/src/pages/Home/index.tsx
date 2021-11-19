@@ -1,13 +1,12 @@
 import { useAuth } from '../../contexts/auth'
 
-export function Home() {
+import Header from '../../components/Header'
 
-  const { Logout } = useAuth()
+export function Home() {
 
   return (
     <>
-      <h1>Home!</h1>
-      <button onClick={Logout}>Sair</button>
+      <Header />
     </>
   )
 }

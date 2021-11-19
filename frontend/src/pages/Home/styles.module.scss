@@ -1,0 +1,10 @@
+.Wrapper {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 100px 1fr 40px;
+  grid-template-columns: 80px 1fr;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main"
+    "sidebar footer";
+}

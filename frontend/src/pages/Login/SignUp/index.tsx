@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from './styles.module.scss';
 
 import { HiArrowLeft } from 'react-icons/hi';

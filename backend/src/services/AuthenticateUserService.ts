@@ -29,12 +29,12 @@ export class AuthenticateUserService {
 
     const token = sign({
       email: user.email,
-    }, "1df01c2f0dbd2bde92cb8b93e74244c3",
+    }, process.env.JWT_SECRET,
       {
         subject: user.id,
         expiresIn: "1d"
       }
     );
-    return token;
+    return { token, email };
   }
 }

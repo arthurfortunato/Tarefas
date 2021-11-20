@@ -9,8 +9,13 @@ export class AuthenticateUserController {
 
     const authenticateUserService = new AuthenticateUserService();
 
-    const token = await authenticateUserService.execute({ email, password });
+    try {
+      const token = await authenticateUserService.execute({ email, password });
+      return response.json(token);
 
-    return response.json(token);
+    } catch (error) {
+      return response.json({ "error": error.message });
+    }
+
   }
 }

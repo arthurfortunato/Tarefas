@@ -20,13 +20,14 @@ export const SignIn: React.FC = () => {
 
     )
   }
+
   return (
     <div className={styles.content}>
       <div className={styles.text}>
         <h1>Faça seu login na plataforma</h1>
       </div>
       <div className={styles.boxContent}>
-        <form onSubmit={handleLogin}>
+        <form >
           <div>
             <MdEmail size="20px" color="rgb(32, 32, 36)" />
             <input
@@ -49,12 +50,12 @@ export const SignIn: React.FC = () => {
             />
           </div>
 
-          <button type="submit">ENTRAR</button>
+          <button type="submit" onClick={handleLogin}>ENTRAR</button>
         </form>
 
         <div className={styles.separator}>
           <p>Não tem uma conta?</p>
-          <a href="/signup" >
+          <a href="/users" >
             Registre-se
           </a>
         </div>

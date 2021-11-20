@@ -1,4 +1,5 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { api } from '../services/api';
 
 type User = {
@@ -13,25 +14,42 @@ type AuthContextData = {
   signed: boolean;
   user: User | null;
   Login(email: string, password: string): Promise<void>;
-  Logout(): void;
   SignUp(name: string, email: string, password: string): Promise<void>;
+  Logout: () => void;
+}
+
+type AuthResponse = {
+  token: string,
+  user: {
+    id: string;
+    name: string;
+    email: string;
+    password: string;
+    admin?: boolean;
+  }
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-export const AuthProvider: React.FC = ({ children }) => {
+type AuthProvider = {
+  children: ReactNode;
+}
+
+export function AuthProvider(props: AuthProvider) {
   const [user, setUser] = useState<User | null>(null);
 
   async function Login(email: string, password: string) {
-    const response = await api.post('/login', {
+    const response = await api.post<AuthResponse>('/login', {
       email: email, password: password
     });
 
-    setUser(response.data.user);
-    api.defaults.headers.common.authorization = `Bearer ${response.data.token}`;
+    const { token, user } = response.data;
 
-    sessionStorage.setItem('@App:user', JSON.stringify(response.data.user));
-    sessionStorage.setItem('@App:token', response.data.token);
+    localStorage.setItem('token', token);
+
+    api.defaults.headers.common.authorization = `Bearer ${token}`;
+
+    setUser(user)
 
   }
 
@@ -42,19 +60,6 @@ export const AuthProvider: React.FC = ({ children }) => {
       password: password
     })
   }
-
-  useEffect(() => {
-    const storagedUser = sessionStorage.getItem('@App:user');
-    const storagedToken = sessionStorage.getItem('@App:token');
-
-    if (storagedToken && storagedUser) {
-      api.defaults.headers.common.authorization = `Bearer ${storagedToken}`;
-
-      api.get<User>('/users').then(response => {
-        setUser(response.data);
-      })
-    }
-  }, []);
 
   useEffect(() => {
     const url = window.location.href;
@@ -68,16 +73,28 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
   }, [])
 
+  const navigate = useNavigate()
   function Logout() {
     setUser(null);
-
-    sessionStorage.removeItem('@App:user');
-    sessionStorage.removeItem('App:token');
+    localStorage.removeItem('token')
+    navigate('/')
   }
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+
+    if (token) {
+      api.defaults.headers.common.authorization = `Bearer ${token}`
+
+      api.get<User>('/users').then(response => {
+        setUser(response.data)
+      })
+    }
+  }, [])
 
   return (
     <AuthContext.Provider value={{ signed: Boolean(user), user, Login, Logout, SignUp }}>
-      {children}
+      {props.children}
     </AuthContext.Provider>
   );
 };

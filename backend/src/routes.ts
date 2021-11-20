@@ -17,7 +17,7 @@ const listEditalController = new ListEditalController();
 
 router.post('/users', createUserController.handle);
 
-router.post('/editais', createEditalController.handle);
+router.post('/editais', ensureAuthenticated, createEditalController.handle);
 
 router.post('/login', authenticateUserController.handle);
 

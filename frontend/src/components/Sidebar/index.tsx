@@ -12,6 +12,7 @@ import {
 
 import { FaUsers, FaBars } from "react-icons/fa";
 import { FiHome, FiLogOut } from "react-icons/fi";
+import { GrNotes } from "react-icons/gr";
 
 import "react-pro-sidebar/dist/scss/styles.scss";
 import './styles.scss';
@@ -47,6 +48,11 @@ const Sidebar = () => {
               <MenuItem icon={<FaUsers />}>
                 <Link to="/users" className="link">
                   Users
+                </Link>
+              </MenuItem>
+              <MenuItem icon={<GrNotes />}>
+                <Link to="/editais" className="link">
+                  Editais
                 </Link>
               </MenuItem>
             </Menu>

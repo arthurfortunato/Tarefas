@@ -19,7 +19,7 @@ export function UsersList() {
     api.get<User[]>('/users').then(response => {
       setUserList(response.data)
     })
-  }, [])
+  }, []);
 
   return (
     <div className={styles.content}>
@@ -36,11 +36,12 @@ export function UsersList() {
         </thead>
         <tbody>
           {userList.map(user => {
+
             return (
               <tr key={user.id}>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td>{user.admin}</td>
+                <td>{user.admin ? "Admin" : ""}</td>
               </tr>
             )
           })}

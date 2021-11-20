@@ -20,8 +20,6 @@ export const SignIn: React.FC = () => {
 
     )
   }
-  console.log(emailSignIn, passwordSignIn)
-
   return (
     <div className={styles.content}>
       <div className={styles.text}>

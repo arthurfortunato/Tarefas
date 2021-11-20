@@ -30,8 +30,8 @@ export const AuthProvider: React.FC = ({ children }) => {
     setUser(response.data.user);
     api.defaults.headers.common.authorization = `Bearer ${response.data.token}`;
 
-    localStorage.setItem('@App:user', JSON.stringify(response.data.user));
-    localStorage.setItem('@App:token', response.data.token);
+    sessionStorage.setItem('@App:user', JSON.stringify(response.data.user));
+    sessionStorage.setItem('@App:token', response.data.token);
 
   }
 
@@ -44,8 +44,8 @@ export const AuthProvider: React.FC = ({ children }) => {
   }
 
   useEffect(() => {
-    const storagedUser = localStorage.getItem('@App:user');
-    const storagedToken = localStorage.getItem('@App:token');
+    const storagedUser = sessionStorage.getItem('@App:user');
+    const storagedToken = sessionStorage.getItem('@App:token');
 
     if (storagedToken && storagedUser) {
       api.defaults.headers.common.authorization = `Bearer ${storagedToken}`;
@@ -71,8 +71,8 @@ export const AuthProvider: React.FC = ({ children }) => {
   function Logout() {
     setUser(null);
 
-    localStorage.removeItem('@App:user');
-    localStorage.removeItem('App:token');
+    sessionStorage.removeItem('@App:user');
+    sessionStorage.removeItem('App:token');
   }
 
   return (

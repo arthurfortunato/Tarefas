@@ -13,21 +13,33 @@
 
   .table {
     grid-area: table;
-    width: 80%;
+    width: 60%;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+    background: #fff;
+    margin: 100px 0px 0px 200px;
 
     thead th {
-      text-align: left;
-      border-bottom: 2px solid black;
+      text-align: center;
+      width: 35%;
+      padding: 15px;
+      font: 600 15px "Inter", sans-serif;
+      border-bottom: 2px solid #a2a2a2;
     }
 
-    tbody td {
-      padding: 0.5em;
-      border-bottom: 1px solid #ccc;
-    }
+    tbody {
+      td {
+        padding: 15px;
+        text-align: center;
+        font: 400 15px "Inter", sans-serif;
+      }
 
-    tbody tr:hover {
-      background-color: #eee;
+      tr {
+        transition: background-color 0.6s;
+
+        &:hover {
+          background-color: rgb(225, 225, 230);
+        }
+      }
     }
   }
 }

@@ -6,14 +6,12 @@ import {
   Menu,
   MenuItem,
   SidebarHeader,
-  SidebarFooter,
   SidebarContent,
+  SidebarFooter
 } from "react-pro-sidebar";
 
-import { FaUsers, FaRegHeart, FaBars } from "react-icons/fa";
+import { FaUsers, FaBars } from "react-icons/fa";
 import { FiHome, FiLogOut } from "react-icons/fi";
-import { RiPencilLine } from "react-icons/ri";
-import { BiCog } from "react-icons/bi";
 
 import "react-pro-sidebar/dist/scss/styles.scss";
 import './styles.scss';
@@ -22,17 +20,17 @@ import { useAuth } from '../../contexts/auth'
 
 const Sidebar = () => {
 
-  const { Logout } = useAuth()
-
   const [menuCollapse, setMenuCollapse] = useState(false)
 
   const menuIconClick = () => {
     menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
   };
 
+  const { Logout } = useAuth();
+
   return (
     <>
-      <div id="header">
+      <div id="sidebar">
         <ProSidebar collapsed={menuCollapse}>
           <SidebarHeader>
             <div className="closemenu" onClick={menuIconClick}>
@@ -42,23 +40,20 @@ const Sidebar = () => {
           <SidebarContent>
             <Menu iconShape="square">
               <MenuItem active={true} icon={<FiHome />}>
-                <Link to="/">
+                <Link to="/" className="link">
                   Home
                 </Link>
               </MenuItem>
               <MenuItem icon={<FaUsers />}>
-                <Link to="/users">
+                <Link to="/users" className="link">
                   Users
                 </Link>
               </MenuItem>
-              <MenuItem icon={<FaRegHeart />}>Favourite</MenuItem>
-              <MenuItem icon={<RiPencilLine />}>Author</MenuItem>
-              <MenuItem icon={<BiCog />}>Settings</MenuItem>
             </Menu>
           </SidebarContent>
           <SidebarFooter>
-            <Menu iconShape="square" onClick={Logout}>
-              <MenuItem icon={<FiLogOut />}>Logout</MenuItem>
+            <Menu iconShape="square">
+              <MenuItem icon={<FiLogOut />} onClick={Logout}>Logout</MenuItem>
             </Menu>
           </SidebarFooter>
         </ProSidebar>

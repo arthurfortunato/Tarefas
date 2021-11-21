@@ -21,23 +21,29 @@ export function Edital() {
 
   const [editaisList, setEditaisList] = useState<Editais[]>([])
 
-  async function Editais(processo: string, ano: string, edital: string) {
+  async function getEditais(processo: string, ano: string, edital: string) {
     await api.post('/editais', {
       processo: processo,
       ano: ano,
       edital: edital
+    }).then(response => {
+      const list = getUpdateList(response.data, true)
+      setEditaisList(list)
     })
   }
 
+  function getUpdateList(edital: Editais, add = true) {
+    const list = editaisList.filter(e => e.id !== edital.id)
+    if (add) list.unshift(edital);
+    return list;
+  }
+
   async function salvar() {
-    await Editais(
+    await getEditais(
       processo,
       ano,
       edital
     )
-    setProcesso('')
-    setAno('')
-    setEdital('')
   }
 
   function cancelar() {
@@ -47,7 +53,10 @@ export function Edital() {
   }
 
   async function onDelete(edital: Editais) {
-    await api.delete(`/editais/${edital.id}`)
+    await api.delete(`/editais/${edital.id}`).then(response => {
+      const list = getUpdateList(edital, false)
+      setEditaisList(list)
+    })
   }
 
   useEffect(() => {
@@ -55,7 +64,6 @@ export function Edital() {
       setEditaisList(response.data)
     })
   }, []);
-
 
   return (
     <div className={styles.content}>

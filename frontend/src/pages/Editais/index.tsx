@@ -1,0 +1,135 @@
+import { useEffect, useState } from 'react';
+import Sidebar from '../../components/Sidebar';
+import { api } from '../../services/api';
+
+import { FaTrashAlt, FaEdit } from 'react-icons/fa';
+
+import styles from './styles.module.scss'
+
+type Editais = {
+  id: string;
+  processo: string;
+  ano: string;
+  edital: string;
+}
+
+export function Edital() {
+  const [processo, setProcesso] = useState('');
+  const [ano, setAno] = useState('');
+  const [edital, setEdital] = useState('');
+
+  const [editaisList, setEditaisList] = useState<Editais[]>([])
+
+  async function Editais(processo: string, ano: string, edital: string) {
+    await api.post('/editais', {
+      processo: processo,
+      ano: ano,
+      edital: edital
+    })
+  }
+
+  async function salvar() {
+    await Editais(
+      processo,
+      ano,
+      edital
+    )
+    setProcesso('')
+    setAno('')
+    setEdital('')
+  }
+
+  function cancelar() {
+    setProcesso('')
+    setAno('')
+    setEdital('')
+  }
+
+  useEffect(() => {
+    api.get<Editais[]>('/editais').then(response => {
+      setEditaisList(response.data)
+    })
+  }, []);
+
+
+  return (
+    <div className={styles.content}>
+      <div className={styles.sidebar}>
+        <Sidebar />
+      </div>
+      <div className={styles.criarEdital}>
+        <form className={styles.form}>
+          <div>
+            <label>Nº Processo</label>
+            <input
+              type="text"
+              name="processo"
+              placeholder="Digite o número do processo..."
+              value={processo}
+              onChange={(event) => { setProcesso(event.target.value) }}
+            />
+          </div>
+
+          <div>
+            <label>Ano</label>
+            <input
+              type="text"
+              name="ano"
+              placeholder="Digite o ano do Edital..."
+              value={ano}
+              onChange={(event) => { setAno(event.target.value) }}
+            />
+          </div>
+
+          <div>
+            <label>Edital</label>
+            <input
+              type="text"
+              name="edital"
+              placeholder="Digite o nome do Edital"
+              value={edital}
+              onChange={(event) => { setEdital(event.target.value) }}
+            />
+          </div>
+        </form>
+        <hr />
+        <div className={styles.submit}>
+          <div className={styles.salvar}>
+            <button type="submit" onClick={salvar}>Salvar</button>
+          </div>
+          <div className={styles.cancelar}>
+            <button type="submit" onClick={cancelar}>Cancelar</button>
+          </div>
+        </div>
+        <div className={styles.table}>
+          <table >
+            <thead>
+              <tr>
+                <th>Processo</th>
+                <th>Ano</th>
+                <th>Edital</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {editaisList.map(edital => {
+
+                return (
+                  <tr key={edital.id}>
+                    <td>{edital.processo}</td>
+                    <td>{edital.ano}</td>
+                    <td>{edital.edital}</td>
+                    <td>
+                      <button className={styles.edit}><FaEdit size="15px" /></button>
+                      <button className={styles.trash}> <FaTrashAlt size="15px" /> </button>
+                    </td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  )
+}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Sidebar from '../../components/Sidebar';
 import { api } from '../../services/api';
+import { useNavigate } from 'react-router-dom';
 
 import { FaTrashAlt, FaEdit } from 'react-icons/fa';
 
@@ -43,6 +44,10 @@ export function Edital() {
     setProcesso('')
     setAno('')
     setEdital('')
+  }
+
+  async function onDelete(edital: Editais) {
+    await api.delete(`/editais/${edital.id}`)
   }
 
   useEffect(() => {
@@ -121,7 +126,7 @@ export function Edital() {
                     <td>{edital.edital}</td>
                     <td>
                       <button className={styles.edit}><FaEdit size="15px" /></button>
-                      <button className={styles.trash}> <FaTrashAlt size="15px" /> </button>
+                      <button className={styles.trash} onClick={() => onDelete(edital)}> <FaTrashAlt size="15px" /> </button>
                     </td>
                   </tr>
                 )

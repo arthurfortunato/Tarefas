@@ -5,7 +5,7 @@
   grid-template-areas:
     "sidebar header"
     "sidebar form"
-    "sidebar footer";
+    "sidebar form";
 
   .sidebar {
     grid-area: sidebar;
@@ -31,17 +31,23 @@
       }
 
       input {
-        width: 100%;
         height: 40px;
+        width: 400px;
         border-radius: 6px;
         border: 1px solid #a2a2a2;
         padding-left: 15px;
         padding-right: 15px;
-        margin-right: 150px;
 
         font: 400 15px "Inter", sans-serif;
         color: #a2a2a2;
         background-color: rgb(255, 255, 255);
+        outline: 0;
+      }
+      input:-webkit-autofill,
+      textarea:-webkit-autofill,
+      select:-webkit-autofill {
+        -webkit-text-fill-color: #a2a2a2;
+        -webkit-box-shadow: 0 0 0px 1000px rgb(255, 255, 255) inset;
       }
     }
 
@@ -98,18 +104,21 @@
       display: flex;
       flex-direction: column;
       padding-top: 50px;
+      height: 580px;
+      overflow: auto;
 
       thead {
         th {
           font: 600 15px "Inter", sans-serif;
           text-align: center;
+          padding-bottom: 15px;
         }
       }
-
       tbody {
         tr {
           td {
             text-align: center;
+            padding: 10px;
             .trash {
               background: #dc3545;
               padding: 10px;
@@ -126,6 +135,9 @@
               cursor: pointer;
               margin-right: 5px;
             }
+          }
+          &:hover {
+            background-color: rgb(225, 225, 230);
           }
         }
       }

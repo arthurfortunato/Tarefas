@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import Sidebar from '../../components/Sidebar';
 import { api } from '../../services/api';
-import { useNavigate } from 'react-router-dom';
 
 import { FaTrashAlt, FaEdit } from 'react-icons/fa';
+import { GiBookCover } from 'react-icons/gi'
 
 import styles from './styles.module.scss'
 
@@ -44,6 +44,9 @@ export function Edital() {
       ano,
       edital
     )
+    setProcesso('')
+    setAno('')
+    setEdital('')
   }
 
   function cancelar() {
@@ -59,6 +62,12 @@ export function Edital() {
     })
   }
 
+  function edit(edital: Editais) {
+    setEdital(edital.edital)
+    setAno(edital.ano)
+    setProcesso(edital.processo)
+  }
+
   useEffect(() => {
     api.get<Editais[]>('/editais').then(response => {
       setEditaisList(response.data)
@@ -67,6 +76,10 @@ export function Edital() {
 
   return (
     <div className={styles.content}>
+      <div className={styles.header}>
+        <GiBookCover size="45px" />
+        <h1>Crie, Leia, Atualize ou Exclua os Editais</h1>
+      </div>
       <div className={styles.sidebar}>
         <Sidebar />
       </div>
@@ -99,7 +112,7 @@ export function Edital() {
             <input
               type="text"
               name="edital"
-              placeholder="Digite o nome do Edital"
+              placeholder="Digite o nome do Edital..."
               value={edital}
               onChange={(event) => { setEdital(event.target.value) }}
             />
@@ -133,7 +146,7 @@ export function Edital() {
                     <td>{edital.ano}</td>
                     <td>{edital.edital}</td>
                     <td>
-                      <button className={styles.edit}><FaEdit size="15px" /></button>
+                      <button className={styles.edit}><FaEdit size="15px" onClick={() => edit(edital)} /></button>
                       <button className={styles.trash} onClick={() => onDelete(edital)}> <FaTrashAlt size="15px" /> </button>
                     </td>
                   </tr>

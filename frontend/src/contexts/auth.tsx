@@ -31,11 +31,11 @@ type AuthResponse = {
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-type AuthProvider = {
+type AuthProviderProps = {
   children: ReactNode;
 }
 
-export function AuthProvider(props: AuthProvider) {
+export function AuthProvider(props: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
 
   async function Login(email: string, password: string) {

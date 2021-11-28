@@ -1,8 +1,9 @@
 import { useColorMode } from "@chakra-ui/color-mode";
 
-import Light from '../assets/themeLight.svg';
 import Dark from '../assets/themeDark.svg';
+import Light from '../assets/logo.svg';
 
+import { MdDarkMode, MdLightMode } from 'react-icons/md'
 
 export function Theme() {
   const { colorMode, toggleColorMode } = useColorMode()
@@ -10,7 +11,7 @@ export function Theme() {
   return (
     <header>
       <button onClick={toggleColorMode}>
-        {colorMode === 'light' ? <img src={Light} alt="" onClick={toggleColorMode} /> : <img src={Dark} alt="" onClick={toggleColorMode} />}
+        {colorMode === 'light' ? <MdDarkMode size={32} onClick={toggleColorMode} /> : <MdLightMode size={32} onClick={toggleColorMode} />}
       </button>
     </header>
   )

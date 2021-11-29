@@ -1,8 +1,5 @@
 import { useColorMode } from "@chakra-ui/color-mode";
 
-import Dark from '../assets/themeDark.svg';
-import Light from '../assets/logo.svg';
-
 import { MdDarkMode, MdLightMode } from 'react-icons/md'
 
 export function Theme() {

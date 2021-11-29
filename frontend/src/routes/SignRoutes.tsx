@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import { SignIn } from '../pages/Login/SignIn';
+import { SignIn } from '../pages/Login';
 
 export const SignRoutes: React.FC = () => {
   return (

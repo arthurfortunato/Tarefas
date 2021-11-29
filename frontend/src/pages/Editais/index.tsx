@@ -6,6 +6,10 @@ import { FaTrashAlt, FaEdit } from 'react-icons/fa';
 import { GiBookCover } from 'react-icons/gi'
 
 import styles from './styles.module.scss'
+import { Theme } from '../../hooks/theme';
+
+import { useColorModeValue } from '@chakra-ui/color-mode';
+import { Box } from '@chakra-ui/layout';
 
 type Editais = {
   id: string;
@@ -18,6 +22,9 @@ export function Edital() {
   const [processo, setProcesso] = useState('');
   const [ano, setAno] = useState('');
   const [edital, setEdital] = useState('');
+
+  const bg = useColorModeValue("#EDF2F7", "#0F1016");
+  const bgContent = useColorModeValue("#fff", "#121214");
 
   const [editaisList, setEditaisList] = useState<Editais[]>([])
 
@@ -75,15 +82,18 @@ export function Edital() {
   }, []);
 
   return (
-    <div className={styles.content}>
+    <Box bg={bg} className={styles.content}>
       <div className={styles.header}>
-        <GiBookCover size="45px" />
-        <h1>Crie, Leia, Atualize ou Exclua os Editais</h1>
+        <div>
+          <GiBookCover size="45px" />
+          <h1>Crie, Leia, Atualize ou Exclua os Editais</h1>
+        </div>
+        <Theme />
       </div>
       <div className={styles.sidebar}>
         <Sidebar />
       </div>
-      <div className={styles.criarEdital}>
+      <Box bg={bgContent} className={styles.criarEdital}>
         <form className={styles.form}>
           <div>
             <label>Nº Processo</label>
@@ -155,7 +165,7 @@ export function Edital() {
             </tbody>
           </table>
         </div>
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }

@@ -21,9 +21,6 @@ import { FaUser } from 'react-icons/fa';
 import { useAuth } from "../../contexts/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { OtherRoutes } from '../../routes/OtherRoutes';
-import { Route, Routes } from 'react-router-dom';
-import { Home } from '../../pages/Home';
 
 export function ModalCreateUser() {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -38,7 +35,7 @@ export function ModalCreateUser() {
 
   const navigate = useNavigate();
 
-  const { SignUp, Login, signed } = useAuth();
+  const { SignUp, Login } = useAuth();
 
   async function signUp() {
     await SignUp(
@@ -175,16 +172,6 @@ export function ModalCreateUser() {
                 value={passwordSignUp}
                 onChange={(event) => { setPasswordSignUp(event.target.value) }}
               />
-            </FormControl>
-
-            <FormControl >
-              <FormLabel
-                color="#F5565C"
-                fontSize='10px'
-                fontFamily="Inter"
-                textAlign={["right"]}
-              >* OBRIGATÓRIO
-              </FormLabel>
             </FormControl>
 
           </ModalBody>

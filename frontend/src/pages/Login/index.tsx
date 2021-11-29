@@ -4,15 +4,15 @@ import styles from './styles.module.scss';
 import { MdEmail } from 'react-icons/md';
 import { FaLock } from 'react-icons/fa';
 
-import { useAuth } from '../../../contexts/auth';
-import { Theme } from '../../../hooks/theme';
+import { useAuth } from '../../contexts/auth';
+import { Theme } from '../../hooks/theme';
 import { useColorModeValue } from '@chakra-ui/color-mode';
 import { Box } from '@chakra-ui/layout';
 import { Input } from '@chakra-ui/input';
 
-import { ModalCreateUser } from '../../../components/Modal/CreateUser';
+import { ModalCreateUser } from '../../components/Modal/CreateUser';
 
-import logo from '../../../assets/logo.svg'
+import logo from '../../assets/logo.svg'
 
 export const SignIn: React.FC = () => {
 
@@ -23,10 +23,8 @@ export const SignIn: React.FC = () => {
 
   async function handleLogin() {
     await Login(
-
       emailSignIn,
       passwordSignIn
-
     )
   }
 
@@ -46,21 +44,26 @@ export const SignIn: React.FC = () => {
           <img src={logo} alt="Logo" />
           <h1>Por favor insira seus dados para prosseguir.</h1>
           <label>E-mail</label>
-          <Box bg={bgInput} mb={15}>
+          <Box bg={"#EDF2F7"} mb={15}>
             <MdEmail size="20px" color="rgb(32, 32, 36)" />
             <Input
+              color="#000"
+              type="email"
+              name="email"
               placeholder="Insira o seu E-mail..."
               value={emailSignIn}
               onChange={(event) => { setEmailSignIn(event.target.value) }}
               variant="unstyled"
               pl={"20px"}
               cursor="pointer"
+              _autofill={{ bg: { bg } }}
             />
           </Box>
           <label>Senha</label>
-          <Box bg={bgInput}>
+          <Box bg={"#EDF2F7"}>
             <FaLock size="18px" color="rgb(32, 32, 36)" />
             <Input
+              color="#000"
               type="password"
               name="password"
               placeholder="•••••••••••"
@@ -76,9 +79,6 @@ export const SignIn: React.FC = () => {
 
           <div className={styles.separator}>
             <p>Não tem uma conta? </p>
-            {/*  <a href="/users" >
-              Registre-se
-            </a> */}
             <ModalCreateUser />
           </div>
         </form>

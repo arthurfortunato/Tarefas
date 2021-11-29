@@ -6,7 +6,7 @@ import { Edital } from '../pages/Editais';
 export const EditaisRoutes: React.FC = () => {
   return (
     <Routes>
-      <Route path="/editais" element={<Edital />} />
+      <Route path="/" element={<Edital />} />
     </Routes>
   );
 };

@@ -10,8 +10,8 @@ import {
   SidebarFooter
 } from "react-pro-sidebar";
 
-import { FaUsers, FaBars } from "react-icons/fa";
-import { FiHome, FiLogOut } from "react-icons/fi";
+import { FaBars } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
 import { GrNotes } from "react-icons/gr";
 
 import "react-pro-sidebar/dist/scss/styles.scss";
@@ -40,18 +40,8 @@ const Sidebar = () => {
           </SidebarHeader>
           <SidebarContent>
             <Menu iconShape="square">
-              <MenuItem active={true} icon={<FiHome />}>
-                <Link to="/" className="link">
-                  Home
-                </Link>
-              </MenuItem>
-              <MenuItem icon={<FaUsers />}>
-                <Link to="/users" className="link">
-                  Users
-                </Link>
-              </MenuItem>
               <MenuItem icon={<GrNotes />}>
-                <Link to="/editais" className="link">
+                <Link to="/" className="link">
                   Editais
                 </Link>
               </MenuItem>

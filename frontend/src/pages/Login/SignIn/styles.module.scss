@@ -64,29 +64,13 @@
         height: 50px;
         padding-left: 20px;
         margin-top: 10px;
-
-        input {
-          width: 100%;
-          outline: 0;
-          height: 40px;
-          padding-left: 20px;
-
-          border: none;
-          outline: 0;
-        }
-        input:-webkit-autofill,
-        textarea:-webkit-autofill,
-        select:-webkit-autofill {
-          -webkit-text-fill-color: none;
-          -webkit-box-shadow: none;
-        }
       }
 
       button {
         background: rgb(130, 87, 229);
-        border-radius: 5px;
+        border-radius: 8px;
         margin-top: 44px;
-        height: 50px;
+        height: 60px;
 
         font: bold 16px "Roboto", sans-serif;
         color: #fff;
@@ -103,22 +87,22 @@
     }
 
     .separator {
-      margin: 24px 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-
-      p {
+      margin: 16px 0;
+      W p {
         font: 400 14px "Roboto", sans-serif;
-        /*         font-size: 14px; */
         color: rgb(204, 204, 204);
       }
-      a {
+      /*  h1 {
         text-decoration: none;
         padding-left: 5px;
         font: 600 14px "Roboto", sans-serif;
         color: rgb(130, 87, 230);
+      } */
+      h1 {
+        font: 600 14px "Roboto", sans-serif;
+        color: #b794f4;
+        cursor: pointer;
+        margin-top: 16px;
       }
     }
   }

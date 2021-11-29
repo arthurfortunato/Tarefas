@@ -10,6 +10,8 @@ import { useColorModeValue } from '@chakra-ui/color-mode';
 import { Box } from '@chakra-ui/layout';
 import { Input } from '@chakra-ui/input';
 
+import { ModalCreateUser } from '../../../components/Modal/CreateUser';
+
 import logo from '../../../assets/logo.svg'
 
 export const SignIn: React.FC = () => {
@@ -51,6 +53,8 @@ export const SignIn: React.FC = () => {
               value={emailSignIn}
               onChange={(event) => { setEmailSignIn(event.target.value) }}
               variant="unstyled"
+              pl={"20px"}
+              cursor="pointer"
             />
           </Box>
           <label>Senha</label>
@@ -63,17 +67,19 @@ export const SignIn: React.FC = () => {
               value={passwordSignIn}
               onChange={(event) => { setPasswordSignIn(event.target.value) }}
               variant="unstyled"
-
+              pl={"20px"}
+              cursor="pointer"
             />
           </Box>
 
           <button type="submit" onClick={handleLogin}>ENTRAR</button>
 
           <div className={styles.separator}>
-            <p>Não tem uma conta?</p>
-            <a href="/users" >
+            <p>Não tem uma conta? </p>
+            {/*  <a href="/users" >
               Registre-se
-            </a>
+            </a> */}
+            <ModalCreateUser />
           </div>
         </form>
       </div>

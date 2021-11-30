@@ -9,6 +9,10 @@
     "sidebar form"
     "sidebar footer";
 
+  @media (max-width: 1086px) {
+    grid-template-columns: 100px 1fr;
+  }
+
   .sidebar {
     grid-area: sidebar;
   }
@@ -29,6 +33,17 @@
     h1 {
       padding-left: 25px;
       font: 600 25px "Inter", sans-serif;
+
+      @media (max-width: 940px) {
+        transition: 1.82s all;
+        font: 600 20px "Inter", sans-serif;
+      }
+      @media (max-width: 610px) {
+        font: 600 18px "Inter", sans-serif;
+      }
+      @media (max-width: 570px) {
+        font: 600 16px "Inter", sans-serif;
+      }
     }
   }
 
@@ -48,11 +63,20 @@
       justify-content: space-between;
       padding: 20px;
 
+      @media (max-width: 940px) {
+        flex-direction: column;
+        align-items: center;
+      }
+
       label {
         display: flex;
         font: 400 15px "Inter", sans-serif;
         padding-bottom: 15px;
         padding-left: 5px;
+
+        @media (max-width: 940px) {
+          margin-top: 15px;
+        }
       }
 
       input {
@@ -61,12 +85,19 @@
         border-radius: 6px;
         border: 1px solid #a2a2a2;
         padding-left: 15px;
-        padding-right: 15px;
+        margin-right: 15px;
 
         font: 400 15px "Inter", sans-serif;
         color: #a2a2a2;
         background-color: rgb(255, 255, 255);
         outline: 0;
+
+        @media (max-width: 1580px) {
+          width: 300px;
+        }
+        @media (max-width: 1246px) {
+          width: 250px;
+        }
       }
       input:-webkit-autofill,
       textarea:-webkit-autofill,
@@ -79,6 +110,10 @@
     .submit {
       display: flex;
       justify-content: flex-end;
+
+      @media (max-width: 940px) {
+        justify-content: center;
+      }
 
       .salvar {
         button {
@@ -131,6 +166,10 @@
       flex-direction: column;
       padding-top: 50px;
       overflow: auto;
+
+      @media (max-width: 520px) {
+        padding-top: 15px;
+      }
 
       thead {
         th {

@@ -47,6 +47,7 @@ export const SignIn: React.FC = () => {
             <MdEmail size="20px" color="rgb(32, 32, 36)" />
             <Input
               color="#000"
+              bg={"#EDF2F7"}
               type="email"
               name="email"
               placeholder="Insira o seu E-mail..."
@@ -63,6 +64,7 @@ export const SignIn: React.FC = () => {
             <FaLock size="18px" color="rgb(32, 32, 36)" />
             <Input
               color="#000"
+              bg={"#EDF2F7"}
               type="password"
               name="password"
               placeholder="•••••••••••"

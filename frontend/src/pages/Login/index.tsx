@@ -1,17 +1,16 @@
 import { useState } from 'react';
-import styles from './styles.module.scss';
-import './responsive.scss';
-
 import { MdEmail } from 'react-icons/md';
 import { FaLock } from 'react-icons/fa';
 
 import { useAuth } from '../../contexts/auth';
 import { Theme } from '../../hooks/theme';
+import { ModalCreateUser } from '../../components/Modal/CreateUser';
+
 import { useColorModeValue } from '@chakra-ui/color-mode';
 import { Box } from '@chakra-ui/layout';
 import { Input } from '@chakra-ui/input';
 
-import { ModalCreateUser } from '../../components/Modal/CreateUser';
+import styles from './styles.module.scss';
 
 import logo from '../../assets/logo.svg'
 

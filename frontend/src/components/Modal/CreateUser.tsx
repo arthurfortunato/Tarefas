@@ -69,7 +69,7 @@ export function ModalCreateUser() {
         onClose={onClose}
       >
         <ModalOverlay />
-        <ModalContent borderRadius="30" w={421}>
+        <ModalContent borderRadius="30" w={[320, 350, 421]}>
 
           <ModalHeader
             bg={bgHeader}
@@ -91,7 +91,7 @@ export function ModalCreateUser() {
 
           <ModalBody
             bg={bgBody}
-            w={"357px"}
+            w={["280", "300px", "357px"]}
             ml={30}
             mt={31}
             borderRadius="30"

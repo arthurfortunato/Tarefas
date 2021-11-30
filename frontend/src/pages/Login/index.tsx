@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './styles.module.scss';
+import './responsive.scss';
 
 import { MdEmail } from 'react-icons/md';
 import { FaLock } from 'react-icons/fa';
@@ -29,7 +30,6 @@ export const SignIn: React.FC = () => {
   }
 
   const bg = useColorModeValue("linear-gradient(138deg, #b794f4 0%, #805ad5 100%, #312950 100%, #322659 100%)", "linear-gradient(138deg, #805ad5 0%, #312950 100%, #322659 100%)")
-  const bgInput = useColorModeValue("#EDF2F7", "#0F1016");
 
   return (
     <div className={styles.content}>

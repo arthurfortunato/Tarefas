@@ -1,0 +1,11 @@
+.content {
+  .text {
+    h1 {
+      @media (max-width: 1014px) {
+        transition: 1.82s all;
+
+        font-size: 20px;
+      }
+    }
+  }
+}
